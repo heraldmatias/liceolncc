@@ -1,0 +1,54 @@
+  {% extends 'base.old.html' %}
+  {% load static %}
+  {% block title %} Plataforma Intersectorial de Redes Sociales OGCS {% endblock %}
+  {% block content %}
+
+<div class="row "> 
+		<div class="span6 offset2">			
+		    <form class="form-inline" name="login" method="post" action="/home/login/"> 
+                               {% csrf_token %}
+				<div class="row">
+                               <br /><br /><br /><br />
+				
+					<h3 id="sesion">Iniciar Sesión:</h3><br>
+					    {% if error_message %}<div class="span5"><div class="row"><div class="alert alert-error">
+<a class="close" data-dismiss="alert">×</a>
+<strong>Error!</strong> {{ error_message }}</div></div></div>{% endif %}
+					<div class="row-fluid">
+						<div class="span3">{{ form.usuario.label_tag }}</div>
+						{{ form.usuario }}
+					</div><br>
+					<div class="row-fluid">
+						<div class="span3">{{ form.clave.label_tag }}</div>
+						{{ form.clave }}
+					</div><br />
+                                        <div class="row-fluid"><a href="{% url ogcs-reset-pass %}">No puedo acceder a mi cuenta</a> </div>
+                                        <br />
+					<div class="row-fluid">
+					<div class="span7"><a class="btn btn-warning" href="javascript: document.login.submit();">Iniciar Sesi&oacute;n </a> </div>
+					<div class="span4"><a class="btn btn-inverse" href="javascript: document.login.submit();"><i class="icon-user icon-white"></i>Crear Cuenta </a> </div>
+					</div>
+				</div>
+			</form>
+		</div>		
+	</div>
+
+{% endblock %}
+ {% block scriptjs %}    
+<script>
+$('#id_usuario').keydown(function(event) {
+  if (event.which == 13) {
+    document.login.submit();
+  }
+});
+$('#id_clave').keydown(function(event) {
+  if (event.which == 13) {
+    document.login.submit();
+  }
+});
+function limpiar_fields(){
+	$("#id_usuario").val("");
+	$("#id_clave").val("");
+	}
+</script>
+  {% endblock %}
