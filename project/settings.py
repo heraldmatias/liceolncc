@@ -135,21 +135,10 @@ INSTALLED_APPS = (
     # 'modules',
     'south',
     'django_tables2',
-    'ubigeo',
-    'usuario',
-    'dependencia',
     'home',
-    'comunicacion',
-    'extras', 
-    'jqchat',   
-    'timezones',
-    'pybb',
-    'pytils',
-    'sorl.thumbnail',
-    'pure_pagination',
 )
 
-GRAPPELLI_ADMIN_TITLE = 'Sitio Administrativo de la Plataforma Intersectorial de Comunicaión Social'
+GRAPPELLI_ADMIN_TITLE = 'Sitio Administrativo de Liceo Naval Manuel Clavero Muga'
 
 LOGIN_URL = '/'
 

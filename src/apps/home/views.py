@@ -7,8 +7,6 @@ from forms import LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
-from usuario.models import Usuario
-from dependencia.models import Odp, Ministerio, Gobernacion
 from datetime import datetime
 from django.conf import settings
 
@@ -21,10 +19,6 @@ def index(request):
 @login_required()
 def view_calendar(request):
     return render_to_response('home/calendario.html', context_instance=RequestContext(request),)
-
-@login_required()
-def permission_denied(request):
-    return render_to_response('home/permiso_denegado.html', context_instance=RequestContext(request),)
 
 def singin(request):
     if request.method == 'POST':
@@ -39,16 +33,7 @@ def singin(request):
         if user.is_active:
             login(request, user)
             today = datetime.now() #fecha actual
-            request.session['login_date'] = today
-            usuario = Usuario.objects.get(user=request.user)
-            request.session['nombres'] = usuario.nombres
-            if profile.organismo.codigo == 1:
-                ini = Ministerio.objects.get(nummin=profile.dependencia)
-            elif profile.organismo.codigo == 2:
-                ini = Odp.objects.get(numodp=profile.dependencia)
-            elif profile.organismo.codigo == 3:
-                ini = Gobernacion.objects.get(numgob=profile.dependencia)
-            request.session['dependencia'] = ini            
+            request.session['login_date'] = today              
             return redirect('ogcs-index')
         else:    
             form = LoginForm()

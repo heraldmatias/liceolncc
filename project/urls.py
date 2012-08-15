@@ -6,16 +6,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
-    (r'^chat/', include('jqchat.urls')),
     (r'^grappelli/', include('grappelli.urls')),
     (r'^$', 'home.views.index'),
     (r'^home/', include('home.urls')),
-    (r'^ubigeo/', include('ubigeo.urls')),
-    (r'^dependencia/', include('dependencia.urls')),  
-    (r'^usuario/', include('usuario.urls')),
-    (r'^comunicacion/', include('comunicacion.urls')),
-    (r'^extras/', include('extras.urls')),
-	(r'^foro/', include('pybb.urls', namespace='pybb')),
 )
 
 from django.views.static import serve
